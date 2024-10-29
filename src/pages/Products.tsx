@@ -5,7 +5,6 @@ import {
   type ProductsResponseWithParams,
 } from "../utils";
 import { type LoaderFunction } from "react-router-dom";
-import { Search } from "lucide-react";
 
 const url = "/products";
 
