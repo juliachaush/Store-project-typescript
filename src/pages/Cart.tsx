@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/hooks";
 import { CartItemsList, SectionTitle, CartTotals } from "@/components";
+// import { stat } from "fs";
 
 function Cart() {
-  const user = null;
+  const user = useAppSelector((state) => state.userState.user);
   const numItemsInCart = useAppSelector(
     (state) => state.cartState.numItemsInCart
   );
@@ -23,7 +24,11 @@ function Cart() {
           <CartTotals />
           {user ? (
             <Button asChild className=" mt-8 w-full">
-              <Link to="/checkout">Proceed to checkout</Link>
+              {user ? (
+                <Link to="/checkout">Proceed to checkout</Link>
+              ) : (
+                <Link to="/login">Please Login</Link>
+              )}
             </Button>
           ) : (
             <Button asChild className=" mt-8 w-full">
