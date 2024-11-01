@@ -48,7 +48,7 @@ export type ProductsResponseWithParams = ProductsResponse & { params: Params };
 
 export type SingleProductResponse = {
   data: Product;
-  meta: {};
+  meta: object;
 };
 
 export type CartItem = {

@@ -8,7 +8,7 @@ import {
 } from "@/components";
 import { ReduxStore } from "@/store";
 import { type OrdersResponse } from "@/utils";
-import { request } from "http";
+// import { request } from "http";
 
 export const loader =
   (store: ReduxStore): LoaderFunction =>
