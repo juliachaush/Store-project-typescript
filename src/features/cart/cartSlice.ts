@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { type CartItem, type CartState } from "@/utils";
 import { toast } from "@/components/ui/use-toast";
 // import { stat } from "fs";
@@ -22,7 +22,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: getCartFromLocalStorage(),
   reducers: {
-    addItem: (state, action: PayloadAction<CartItem>) => {
+    addItem: (state, action: { payload: CartItem }) => {
       const newCartItem = action.payload;
       const item = state.cartItems.find((i) => i.cartID === newCartItem.cartID);
       if (item) {
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(defaultState));
       return defaultState;
     },
-    removeItem: (state, action: PayloadAction<string>) => {
+    removeItem: (state, action: { payload: string }) => {
       const cartID = action.payload;
       const cartItem = state.cartItems.find((i) => i.cartID === cartID);
       if (!cartItem) return;
@@ -54,7 +54,7 @@ const cartSlice = createSlice({
     },
     editItem: (
       state,
-      action: PayloadAction<{ cartID: string; amount: number }>
+      action: { payload: { cartID: string; amount: number } }
     ) => {
       const { cartID, amount } = action.payload;
       const cartItem = state.cartItems.find((i) => i.cartID === cartID);

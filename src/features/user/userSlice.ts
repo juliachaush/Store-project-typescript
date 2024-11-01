@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "@/components/ui/use-toast";
 
 export type User = {
@@ -19,11 +19,13 @@ const getUserFromLocalStorage = (): User | null => {
 const initialState: UserState = {
   user: getUserFromLocalStorage(),
 };
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginUser: (state, action: PayloadAction<User>) => {
+    loginUser: (state, action: { payload: User }) => {
+      // Inline type definition without PayloadAction
       const user = action.payload;
       state.user = user;
       localStorage.setItem("user", JSON.stringify(user));
